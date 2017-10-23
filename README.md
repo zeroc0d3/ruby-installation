@@ -32,6 +32,7 @@ Features:
       # ("rbenv" = using rbenv package manager, "rvm" = using rvm package manager)
   ```
 * Create `rootfs/root` folder
+* Copy all sources in this repo to `rootfs/root` folder
 * Install Ruby in Dockerfile
   ```
   #-----------------------------------------------------------------------------
