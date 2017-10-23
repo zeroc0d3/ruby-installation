@@ -6,71 +6,25 @@ Features:
 - [X] Using `rvm` Package Manager
 - [X] Support Docker Installation
 
-**NOTES:**
-**It will remove all your old Ruby (rbenv/rvm) packages**
-
 ## Configuration
 * Ruby Version
-   ```
-   DEFAULT_VERSION='2.4.2'
-   ```
+  ```
+  DEFAULT_VERSION='2.4.2'
+  ```
 * Install with `rbenv`
-   ```
-   DEFAULT_PACKAGE='rbenv'
-   ```
+  ```
+  DEFAULT_PACKAGE='rbenv'
+  ```
 * Install with `rvm`
-   ```
-   DEFAULT_PACKAGE='rvm'
-   ```
+  ```
+  DEFAULT_PACKAGE='rvm'
+  ```
 * Your Username & Path (Home)
-   ```
-   USERNAME='zeroc0d3'
-   PATH_HOME='/home/zeroc0d3'
-   ```    
-   
-## Docker Installation
-* From Image
-   ```
-   FROM zeroc0d3lab/centos-base-consul:latest
-   ```
-* Environment
   ```
-  ENV RUBY_VERSION=2.4.2
-  ENV RUBY_PACKAGE="rbenv"
-      # ("rbenv" = using rbenv package manager, "rvm" = using rvm package manager)
-  ```
-* Create `rootfs/root` folder
-* Copy all sources in this repo to `rootfs/root` folder
-* Configure as root 
-   ```
-   USERNAME='root'
-   PATH_HOME='/root'
-   ```    
-* Install Ruby in Dockerfile
-  ```
-  #-----------------------------------------------------------------------------
-  # Prepare Install Ruby
-  # -) copy .zshrc to /root
-  # -) copy .bashrc to /root
-  #-----------------------------------------------------------------------------
-  COPY ./rootfs/root/.zshrc /root/.zshrc
-  COPY ./rootfs/root/.bashrc /root/.bashrc
-  COPY ./rootfs/root/ruby.sh /etc/profile.d/ruby.sh
-  COPY ./rootfs/root/install_ruby.sh /opt/install_ruby.sh
-  RUN sudo /bin/sh /opt/install_ruby.sh
-
-  #-----------------------------------------------------------------------------
-  # Copy package dependencies in Gemfile
-  #-----------------------------------------------------------------------------
-  COPY ./rootfs/root/Gemfile /opt/Gemfile
-  COPY ./rootfs/root/Gemfile.lock /opt/Gemfile.lock
-  #-----------------------------------------------------------------------------
-  # Install Ruby Packages (rbenv/rvm)
-  #-----------------------------------------------------------------------------
-  COPY ./rootfs/root/gems.sh /opt/gems.sh
-  RUN sudo /bin/sh /opt/gems.sh
-  ```
-* Bash / ZSH Configuration
+  USERNAME='zeroc0d3'
+  PATH_HOME='/home/zeroc0d3'
+  ```    
+* Bash (`~/.bashrc`) and/or ZSH (`~/.zshrc`) Configuration
   ```
   ### Path Ruby RBENV / RVM ###
   export RBENV_ROOT="$HOME/.rbenv"
@@ -90,25 +44,60 @@ Features:
       export PATH="$PATH:$RVM_ROOT/bin"
       source $RVM_ROOT/scripts/rvm
 
-      # Set PATH alternatives using this:
+      # set PATH alternatives using this:
       [[ -s "$RVM_ROOT/scripts/rvm"  ]] && source "$RVM_ROOT/scripts/rvm"
-
-      ### rvm selector ###
-      # function gemdir {
-      #   if [[ -z "$1" ]] ; then
-      #     echo "gemdir expects a parameter, which should be a valid RVM Ruby selector"
-      #   else
-      #     rvm "$1"
-      #     cd $(rvm gemdir)
-      #     pwd
-      #   fi
-      # }
     fi 
   fi
   ```
+
+## Docker Installation
+* From Image
+  ```
+  FROM zeroc0d3lab/centos-base-consul:latest
+  ```
+* Environment
+  ```
+  ENV RUBY_VERSION=2.4.2
+  ENV RUBY_PACKAGE="rbenv"
+  # ("rbenv" = using rbenv package manager, "rvm" = using rvm package manager)
+  ```
+* Create `rootfs/root` folder
+* Copy all sources in this repo to `rootfs/root` folder
+* Configure as root 
+  ```
+  USERNAME='root'
+  PATH_HOME='/root'
+  ```    
+* Install Ruby in Dockerfile
+  ```
+  #-----------------------------------------------------------------------------
+  # Prepare Install Ruby
+  # -) copy .zshrc to /root
+  # -) copy .bashrc to /root
+  # -) copy installation scripts to /opt
+  #-----------------------------------------------------------------------------
+  COPY ./rootfs/root/.zshrc /root/.zshrc
+  COPY ./rootfs/root/.bashrc /root/.bashrc
+  COPY ./rootfs/root/ruby.sh /etc/profile.d/ruby.sh
+  COPY ./rootfs/root/install_ruby.sh /opt/install_ruby.sh
+  COPT ./rootfs/root/reload_shell.sh /opt/reload_shell.sh
+  RUN sudo /bin/sh /opt/install_ruby.sh
+
+  #-----------------------------------------------------------------------------
+  # Copy package dependencies in Gemfile
+  #-----------------------------------------------------------------------------
+  COPY ./rootfs/root/Gemfile /opt/Gemfile
+  COPY ./rootfs/root/Gemfile.lock /opt/Gemfile.lock
+
+  #-----------------------------------------------------------------------------
+  # Install Ruby Packages (rbenv/rvm)
+  #-----------------------------------------------------------------------------
+  COPY ./rootfs/root/gems.sh /opt/gems.sh
+  RUN sudo /bin/sh /opt/gems.sh
+  ```
   
 ## Running Installation
-* Running command:
+* Type command:
   ```
   ./install_ruby.sh
   ```
