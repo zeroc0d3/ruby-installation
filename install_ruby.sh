@@ -2,6 +2,9 @@
 
 DATE=`date '+%Y-%m-%d %H:%M:%S'`
 DEFAULT_VERSION='2.4.2'
+DEFAULT_PACKAGE='rbenv'
+INSTALL_VERSION=$DEFAULT_VERSION
+INSTALL_PACKAGE=$DEFAULT_PACKAGE
 
 logo() {
   echo "--------------------------------------------------------------------------"
@@ -16,9 +19,16 @@ logo() {
 }
 
 check_version() {
-  if [ "${RUBY_VERSION}" = "" ]
+  if [ "${RUBY_VERSION}" != "" ]
   then
-    ${RUBY_VERSION} = $DEFAULT_VERSION
+    INSTALL_VERSION=${RUBY_VERSION}   
+  fi
+}
+
+check_ruby_package() {
+  if [ "${RUBY_VERSION}" != "" ]
+  then
+    INSTALL_PACKAGE=${RUBY_PACKAGE}   
   fi
 }
 
@@ -26,12 +36,20 @@ load_env() {
   echo "--------------------------------------------------------------------------"
   echo "## Load Environment: "
   echo "   $HOME/.bashrc"
-  source ~/.bashrc
+  echo ""
+# source ~/.bashrc
   exec $SHELL
 }
 
 install_ruby() {
-  if [ "${RUBY_PACKAGE}" = "rbenv" ]
+  echo "--------------------------------------------------------------------------"
+  echo "## Install Ruby Version: " 
+  echo "   $INSTALL_VERSION"
+  echo "## Using Ruby Package: "
+  echo "   $INSTALL_PACKAGE"
+  echo ""
+
+  if [ "$INSTALL_PACKAGE" = "rbenv" ]
   then
     #-----------------------------------------------------------------------------
     # Install Ruby with rbenv (default)
@@ -39,8 +57,8 @@ install_ruby() {
     git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && exec $SHELL \
-    && $HOME/.rbenv/bin/rbenv install ${RUBY_VERSION} \
-    && $HOME/.rbenv/bin/rbenv global ${RUBY_VERSION} \
+    && $HOME/.rbenv/bin/rbenv install $INSTALL_VERSION \
+    && $HOME/.rbenv/bin/rbenv global $INSTALL_VERSION \
     && $HOME/.rbenv/bin/rbenv rehash \
     && $HOME/.rbenv/shims/ruby -v
   else
@@ -52,8 +70,8 @@ install_ruby() {
     && sudo usermod -a -G rvm root \
     && sudo usermod -a -G rvm docker \
     && source ~/.bashrc \
-    && /usr/local/rvm/bin/rvm install ${RUBY_VERSION} \
-    && /usr/local/rvm/bin/rvm use ${RUBY_VERSION} --default \
+    && /usr/local/rvm/bin/rvm install $INSTALL_VERSION \
+    && /usr/local/rvm/bin/rvm use $INSTALL_VERSION --default \
     && /usr/bin/ruby -v
   fi
 }
@@ -64,25 +82,28 @@ check(){
   RUBY=`which ruby`
   RUBY_V=`$RUBY -v`
   echo "   $RUBY_V"
-  echo "--------------------------------------------------------------------------"
+  echo ""
   echo "## Path Ruby: "
   echo "   $RUBY"
-  echo "--------------------------------------------------------------------------"
+  echo ""
   echo "## Path Gem: "
   GEM=`which gem`
   echo "   $GEM"
+  echo ""
 }
 
 install_bundle() {
   echo "--------------------------------------------------------------------------"
   echo "## Install Bundle: "
   echo "   $GEM install bundle"
+  echo ""
   $GEM install bundle
 }
 
 main() {
   logo
-  #check_version
+  check_version
+  check_ruby_package
   install_ruby
   load_env
   check
