@@ -1,6 +1,11 @@
 # ruby-installation
 Simple Command For Ruby Installation
 
+Features:
+- [X] Using `rbenv` Package Manager
+- [X] Using `rvm` Package Manager
+- [X] Support Docker Installation
+
 ## Configuration
 * Ruby Version
    ```
