@@ -19,6 +19,11 @@ Features:
    ```
    DEFAULT_PACKAGE='rvm'
    ```
+* Your Username & Path (Home)
+   ```
+   USERNAME='zeroc0d3'
+   PATH_HOME='/home/zeroc0d3'
+   ```    
    
 ## Docker Installation
 * From Image
@@ -61,7 +66,7 @@ Features:
   ```
   ### Path Ruby RBENV / RVM ###
   export RBENV_ROOT="$HOME/.rbenv"
-  export RVM_ROOT="/usr/local/rvm"
+  export RVM_ROOT="$HOME/.rvm"
 
   ### rbenv (Ruby) default ###
   if [ -d "$RBENV_ROOT" ] 
