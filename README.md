@@ -80,7 +80,7 @@ Features:
   COPY ./rootfs/root/.bashrc /root/.bashrc
   COPY ./rootfs/root/ruby.sh /etc/profile.d/ruby.sh
   COPY ./rootfs/root/install_ruby.sh /opt/install_ruby.sh
-  COPT ./rootfs/root/reload_shell.sh /opt/reload_shell.sh
+  COPY ./rootfs/root/reload_shell.sh /opt/reload_shell.sh
   RUN sudo /bin/sh /opt/install_ruby.sh
 
   #-----------------------------------------------------------------------------
