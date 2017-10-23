@@ -71,7 +71,7 @@ install_ruby() {
     && curl -sSL https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | sudo bash -s stable \
     && sudo usermod -a -G rvm root \
     && sudo usermod -a -G rvm $USERNAME \
-    && source ~/.bashrc \
+    && source $PATH_HOME/.rvm/scripts/rvm \
     && $PATH_HOME/.rvm/bin/rvm install $INSTALL_VERSION \
     && $PATH_HOME/.rvm/bin/rvm use $INSTALL_VERSION --default \
     && /usr/bin/ruby -v
