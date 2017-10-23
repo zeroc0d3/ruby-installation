@@ -6,6 +6,9 @@ Features:
 - [X] Using `rvm` Package Manager
 - [X] Support Docker Installation
 
+**NOTES:**
+**It will remove all your old Ruby (rbenv/rvm) packages**
+
 ## Configuration
 * Ruby Version
    ```
