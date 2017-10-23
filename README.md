@@ -11,11 +11,11 @@ Features:
   ```
   DEFAULT_VERSION='2.4.2'
   ```
-* Install with `rbenv`
+* Install with `rbenv` Package Manager
   ```
   DEFAULT_PACKAGE='rbenv'
   ```
-* Install with `rvm`
+* Install with `rvm` Package Manager
   ```
   DEFAULT_PACKAGE='rvm'
   ```

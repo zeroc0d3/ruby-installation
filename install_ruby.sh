@@ -132,7 +132,7 @@ install_ruby() {
   fi
 }
 
-validate_installation(){
+validate_installation() {
   echo "--------------------------------------------------------------------------"
   echo "## Ruby Version: "
   RUBY=`which ruby`
