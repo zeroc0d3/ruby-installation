@@ -38,6 +38,11 @@ Features:
   ```
 * Create `rootfs/root` folder
 * Copy all sources in this repo to `rootfs/root` folder
+* Configure as root 
+   ```
+   USERNAME='root'
+   PATH_HOME='/root'
+   ```    
 * Install Ruby in Dockerfile
   ```
   #-----------------------------------------------------------------------------
@@ -66,7 +71,7 @@ Features:
   ```
   ### Path Ruby RBENV / RVM ###
   export RBENV_ROOT="$HOME/.rbenv"
-  export RVM_ROOT="$HOME/.rvm"
+  export RVM_ROOT="/usr/local/rvm"
 
   ### rbenv (Ruby) default ###
   if [ -d "$RBENV_ROOT" ] 

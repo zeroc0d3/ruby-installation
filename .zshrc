@@ -97,7 +97,7 @@ source $ZSH/oh-my-zsh.sh
 
 ### Path Ruby RBENV / RVM ###
 export RBENV_ROOT="$HOME/.rbenv"
-export RVM_ROOT="$HOME/rvm"
+export RVM_ROOT="/usr/local/rvm"
 
 ### rbenv (Ruby) default ###
 if [ -d "$RBENV_ROOT" ] 

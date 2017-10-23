@@ -2,11 +2,13 @@
 
 DATE=`date '+%Y-%m-%d %H:%M:%S'`
 DEFAULT_VERSION='2.4.2'
-DEFAULT_PACKAGE='rbenv'
+DEFAULT_PACKAGE='rvm'
 INSTALL_VERSION=$DEFAULT_VERSION
 INSTALL_PACKAGE=$DEFAULT_PACKAGE
 USERNAME='zeroc0d3'
 PATH_HOME='/home/zeroc0d3'
+RBENV_ROOT="$PATH_HOME/.rbenv"
+RVM_ROOT="/usr/local/rvm"
 
 logo() {
   echo "--------------------------------------------------------------------------"
@@ -56,24 +58,26 @@ install_ruby() {
     #-----------------------------------------------------------------------------
     # Install Ruby with rbenv (default)
     #-----------------------------------------------------------------------------
-    git clone https://github.com/rbenv/rbenv.git $PATH_HOME/.rbenv \
-    && git clone https://github.com/rbenv/ruby-build.git $PATH_HOME/.rbenv/plugins/ruby-build \
+    sudo rm -rf $RBENV_ROOT/.rbenv \
+    && git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT/.rbenv \
+    && git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/.rbenv/plugins/ruby-build \
     && exec $SHELL \
-    && $PATH_HOME/.rbenv/bin/rbenv install $INSTALL_VERSION \
-    && $PATH_HOME/.rbenv/bin/rbenv global $INSTALL_VERSION \
-    && $PATH_HOME/.rbenv/bin/rbenv rehash \
-    && $PATH_HOME/.rbenv/shims/ruby -v
+    && $RBENV_ROOT/.rbenv/bin/rbenv install $INSTALL_VERSION \
+    && $RBENV_ROOT/.rbenv/bin/rbenv global $INSTALL_VERSION \
+    && $RBENV_ROOT/.rbenv/bin/rbenv rehash \
+    && $RBENV_ROOT/.rbenv/shims/ruby -v
   else
     #-----------------------------------------------------------------------------
     # Install Ruby with rvm (alternatives)
     #-----------------------------------------------------------------------------
-    curl -sSL https://rvm.io/mpapis.asc | gpg2 --import \
+    sudo rm -rf $RVM_ROOT \
+    && curl -sSL https://rvm.io/mpapis.asc | gpg2 --import \
     && curl -sSL https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | sudo bash -s stable \
     && sudo usermod -a -G rvm root \
     && sudo usermod -a -G rvm $USERNAME \
-    && source $PATH_HOME/.rvm/scripts/rvm \
-    && $PATH_HOME/.rvm/bin/rvm install $INSTALL_VERSION \
-    && $PATH_HOME/.rvm/bin/rvm use $INSTALL_VERSION --default \
+    && source ~/.bashrc \
+    && $RVM_ROOT/bin/rvm install $INSTALL_VERSION \
+    && $RVM_ROOT/bin/rvm use $INSTALL_VERSION --default \
     && /usr/bin/ruby -v
   fi
 }
