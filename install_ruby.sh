@@ -5,8 +5,8 @@ DEFAULT_VERSION="2.4.2"
 DEFAULT_PACKAGE="rbenv"
 INSTALL_VERSION=$DEFAULT_VERSION
 INSTALL_PACKAGE=$DEFAULT_PACKAGE
-USERNAME="zeroc0d3"
-PATH_HOME="/home/zeroc0d3"
+USERNAME=`echo $USER`
+PATH_HOME=`echo $HOME`
 
 ### Path Installation Ruby Package Manager ###
 RBENV_ROOT="$PATH_HOME/.rbenv"
@@ -16,7 +16,8 @@ RVM_ROOT="/usr/local/rvm"
 SNAP_BACKUP=`date '+%Y%m%d%H%M'`
 PATH_BACKUP_RBENV=$PATH_HOME"/__rbenv_"$SNAP_BACKUP
 PATH_BACKUP_RVM=$PATH_HOME"/__rvm_"$SNAP_BACKUP
-
+WHAT_SHELL=`$SHELL -c 'echo $0'`
+  
 logo() {
   echo "--------------------------------------------------------------------------"
   echo "  __________                  _________ _______       .___________        "
@@ -44,36 +45,35 @@ check_ruby_package() {
 }
 
 reload_env_shell() {
-  WHAT_SHELL=`$SHELL -c 'echo $0'`
-  if [ "$WHAT_SHELL" = "`which zsh`" ] || [ "$WHAT_SHELL" = "zsh" ]
-  then  
+  if [ "$INSTALL_PACKAGE" = "rbenv" ]
+  then
     exec $SHELL
   else
-    if [ "$WHAT_SHELL" = "`which bash`" ] || [ "$WHAT_SHELL" = "bash" ]
-    then
-      source ~/.bashrc
-    else 
-      exec $SHELL
-    fi
+    source $RVM_ROOT/scripts/rvm
   fi
 }
 
 check_env() {
+  reload_env_shell
   echo "--------------------------------------------------------------------------"
   echo "## Load Environment: "
   
-  WHAT_SHELL=`$SHELL -c 'echo $0'`
-  if [ "$WHAT_SHELL" = "`which zsh`" ] || [ "$WHAT_SHELL" = "zsh" ]
-  then  
-    echo "   $PATH_HOME/.zshrc"
-  else
-    if [ "$WHAT_SHELL" = "`which bash`" ] || [ "$WHAT_SHELL" = "bash" ]
-    then
-      echo "   $PATH_HOME/.bashrc"
-    else 
-      echo "   $PATH_HOME/.bashrc"
+  if [ "$INSTALL_PACKAGE" = "rbenv" ]
+  then
+    if [ "$WHAT_SHELL" = "`which zsh`" ] || [ "$WHAT_SHELL" = "zsh" ]
+    then  
+      echo "   $PATH_HOME/.zshrc"
+    else
+      if [ "$WHAT_SHELL" = "`which bash`" ] || [ "$WHAT_SHELL" = "bash" ]
+      then
+        echo "   $PATH_HOME/.bashrc"
+      else 
+        echo "   $PATH_HOME/.bashrc"
+      fi
     fi
-  fi
+  else
+    echo "   $RVM_ROOT/scripts/rvm"
+  fi  
 
   echo ""
 }
@@ -81,9 +81,13 @@ check_env() {
 cleanup() {
   if [ "$INSTALL_PACKAGE" = "rbenv" ]
   then
-    mv $RBENV_ROOT $PATH_BACKUP_RBENV 
+    if [ -d "$RBENV_ROOT" ]; then 
+      mv $RBENV_ROOT $PATH_BACKUP_RBENV 
+    fi 
   else 
-    sudo mv $RVM_ROOT $PATH_BACKUP_RVM 
+    if [ -d "$RVM_ROOT" ]; then 
+      sudo mv $RVM_ROOT $PATH_BACKUP_RVM 
+    fi     
   fi
   sudo rm -f /etc/profile.d/rvm.sh
 }
@@ -102,15 +106,14 @@ install_ruby() {
     # Get repo rbenv
     #-----------------------------------------------------------------------------
     git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT \
-      && git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build \
+      && git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build 
     
     #-----------------------------------------------------------------------------
     # Install Ruby with rbenv (default)
     #-----------------------------------------------------------------------------
     $RBENV_ROOT/bin/rbenv install $INSTALL_VERSION \
       && $RBENV_ROOT/bin/rbenv global $INSTALL_VERSION \
-      && $RBENV_ROOT/bin/rbenv rehash \
-      && $RBENV_ROOT/shims/ruby -v
+      && $RBENV_ROOT/bin/rbenv rehash 
   else
     #-----------------------------------------------------------------------------
     # Get repo rvm
@@ -127,8 +130,7 @@ install_ruby() {
     # Install Ruby with rvm (alternatives)
     #-----------------------------------------------------------------------------
     $RVM_ROOT/bin/rvm install $INSTALL_VERSION \
-      && $RVM_ROOT/bin/rvm use $INSTALL_VERSION --default \
-      && /usr/bin/ruby -v
+      && $RVM_ROOT/bin/rvm use $INSTALL_VERSION --default 
   fi
 }
 

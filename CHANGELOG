@@ -1,0 +1,20 @@
+version 1.2
+-------------------
+- Fixing environment bash / zsh reload shell
+- Dynamic USERNAME & PATH_HOME
+
+version 1.1
+-------------------
+Fixing Environment & Reload Shell
+
+version 1.0
+-------------------
+Add reload shell for bash & zsh
+
+version 0.9.1
+-------------------
+Installer with rbenv as default package manager
+
+version 0.9
+-------------------
+Installer with rvm as default package manager
