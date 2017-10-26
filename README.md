@@ -78,26 +78,17 @@ Painless Ruby Installation (Autoinstaller Ruby)
   # Prepare Install Ruby
   # -) copy .zshrc to /root
   # -) copy .bashrc to /root
-  # -) copy installation scripts to /opt
   #-----------------------------------------------------------------------------
+  RUN git clone https://github.com/zeroc0d3/ruby-installation /opt/ruby_installer 
+
   COPY ./rootfs/root/.zshrc /root/.zshrc
   COPY ./rootfs/root/.bashrc /root/.bashrc
-  COPY ./rootfs/root/ruby.sh /etc/profile.d/ruby.sh
-  COPY ./rootfs/root/install_ruby.sh /opt/install_ruby.sh
-  COPY ./rootfs/root/reload_shell.sh /opt/reload_shell.sh
-  RUN sudo /bin/sh /opt/install_ruby.sh
-
-  #-----------------------------------------------------------------------------
-  # Copy package dependencies in Gemfile
-  #-----------------------------------------------------------------------------
-  COPY ./rootfs/root/Gemfile /opt/Gemfile
-  COPY ./rootfs/root/Gemfile.lock /opt/Gemfile.lock
+  RUN sudo /bin/sh /opt/ruby_installer/install_ruby.sh
 
   #-----------------------------------------------------------------------------
   # Install Ruby Packages (rbenv/rvm)
   #-----------------------------------------------------------------------------
-  COPY ./rootfs/root/gems.sh /opt/gems.sh
-  RUN sudo /bin/sh /opt/gems.sh
+  RUN sudo /bin/sh /opt/ruby_installer/gems.sh
   ```
   
 ## Running Installation
