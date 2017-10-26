@@ -1,7 +1,11 @@
 # ruby-installation
-Simple Command For Ruby Installation
+Painless Ruby Installation (Autoinstaller Ruby)
 
-Features:
+![alt text](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby1.png)
+
+![alt text](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby2.png)
+
+## Features
 - [X] Using `rbenv` Package Manager
 - [X] Using `rvm` Package Manager
 - [X] Support Docker Installation
@@ -21,8 +25,8 @@ Features:
   ```
 * Your Username & Path (Home)
   ```
-  USERNAME='zeroc0d3'
-  PATH_HOME='/home/zeroc0d3'
+  USERNAME='zeroc0d3'         (default: USERNAME=`echo $USER`)
+  PATH_HOME='/home/zeroc0d3'  (default: PATH_HOME=`echo $HOME`)
   ```    
 * Bash (`~/.bashrc`) and/or ZSH (`~/.zshrc`) Configuration
   ```
@@ -97,6 +101,10 @@ Features:
   ```
   
 ## Running Installation
+* [X] Configure Ruby Version
+* [X] Configure Package Manager
+* [X] Configure Username & Path
+* [X] Configure Bash (`~/.bashrc`) and/or ZSH (`~/.zshrc`)
 * Type command:
   ```
   ./install_ruby.sh
