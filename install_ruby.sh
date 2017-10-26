@@ -76,7 +76,6 @@ cleanup() {
     fi     
   fi
   sudo rm -f /etc/profile.d/rvm.sh
-  
   echo ""
   get_time
   echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Old Ruby Packages Archived... \033[0m\n"
@@ -104,8 +103,7 @@ load_env() {
     fi
   else
     echo "\033[22;32m[ $DATE ]       $RVM_ROOT/scripts/rvm \033[0m\n"
-  fi  
-  
+  fi    
   get_time
   echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Environment Loaded... \033[0m\n"
 }
@@ -123,13 +121,10 @@ install_ruby() {
   get_time
   echo "\033[22;34m[ $DATE ] ##### Install Ruby Version: \033[0m" 
   echo "\033[22;32m[ $DATE ]       $INSTALL_VERSION \033[0m\n"
-  
   get_time
   echo "\033[22;34m[ $DATE ] ##### Using Ruby Package: \033[0m" 
   echo "\033[22;32m[ $DATE ]       $INSTALL_PACKAGE \033[0m\n"
-  
   cleanup
-  
   if [ "$INSTALL_PACKAGE" = "rbenv" ]
   then
     #-----------------------------------------------------------------------------
@@ -184,11 +179,9 @@ validate_installation() {
   RUBY=`which ruby`
   RUBY_V=`$RUBY -v`
   echo "\033[22;32m[ $DATE ]       $RUBY_V \033[0m\n"
-  
   get_time
   echo "\033[22;34m[ $DATE ] ##### Path Ruby: \033[0m" 
-  echo "\033[22;32m[ $DATE ]       $RUBY   \033[0m\n"
-  
+  echo "\033[22;32m[ $DATE ]       $RUBY   \033[0m\n"  
   get_time
   echo "\033[22;34m[ $DATE ] ##### Path Gem: \033[0m" 
   GEM=`which gem`
@@ -199,12 +192,10 @@ install_bundle() {
   get_time
   echo "\033[22;34m[ $DATE ] ##### Install Bundle: \033[0m" 
   echo "\033[22;32m[ $DATE ]       $GEM install bundle   \033[0m\n"
-
   $GEM install bundle
-
   echo ""
   get_time
-  echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Bundle Installed... \033[0m\n"
+  echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Bundle Installed... \033[0m"
 }
 
 main() {
