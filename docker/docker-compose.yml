@@ -1,0 +1,33 @@
+version: '3.2'
+
+services:
+  consul:
+    image: zeroc0d3lab/centos-consul
+    ports:
+      - "8500:8500"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - CONSUL_OPTIONS=${CONSUL_OPTIONS}                   # minimal server options
+
+  ruby:
+    depends_on:
+      - consul
+    build:
+      context: .
+    ports:
+      - "${RUBY_PORT}:22"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DATA_SAVE}/workspace:/home/docker                # volume for data
+    environment:
+      - RUBY_VERSION=${RUBY_VERSION}
+      - RUBY_PACKAGE=${RUBY_PACKAGE}
+      - PATH_WORKSPACE=${PATH_WORKSPACE}
+  
+#-------------------------------------------------------------------
+# VOLUME SETUP
+#-------------------------------------------------------------------
+volumes:
+  ruby:
+    driver: "local"

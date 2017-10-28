@@ -2,7 +2,6 @@
 Painless Ruby Installation (Autoinstaller Ruby)
 
 ![alt text](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby1.png)
-
 ![alt text](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby2.png)
 
 ## Features
@@ -57,7 +56,7 @@ Painless Ruby Installation (Autoinstaller Ruby)
 ## Docker Installation
 * From Image
   ```
-  FROM zeroc0d3lab/centos-base-consul:latest
+  FROM zeroc0d3lab/centos-base-workspace-lite:latest
   ```
 * Environment
   ```
@@ -90,6 +89,8 @@ Painless Ruby Installation (Autoinstaller Ruby)
   #-----------------------------------------------------------------------------
   RUN sudo /bin/sh /opt/ruby_installer/gems.sh
   ```
+* Sample project of Docker Ruby, visit [zeroc0d3/docker-lab](https://github.com/zeroc0d3/docker-lab) repository
+    
   
 ## Running Installation
 * [X] Configure Ruby Version
@@ -100,3 +101,6 @@ Painless Ruby Installation (Autoinstaller Ruby)
   ```
   ./install_ruby.sh
   ```
+
+## License
+[**MIT License**](https://github.com/zeroc0d3/ruby-installation/blob/master/LICENSE)
