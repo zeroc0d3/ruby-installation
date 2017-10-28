@@ -114,7 +114,6 @@ main() {
   install_bundle
   install_package
   footer
-  reload_shell
 }
 
 ### START HERE ###

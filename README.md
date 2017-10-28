@@ -27,7 +27,7 @@ Painless Ruby Installation (Autoinstaller Ruby)
   USERNAME='zeroc0d3'         (default: USERNAME=`echo $USER`)
   PATH_HOME='/home/zeroc0d3'  (default: PATH_HOME=`echo $HOME`)
   ```    
-* Bash (`~/.bashrc`) and/or ZSH (`~/.zshrc`) Configuration
+* Add this configuration for Bash (`~/.bashrc`) and/or ZSH (`~/.zshrc`) 
   ```
   ### Path Ruby RBENV / RVM ###
   export RBENV_ROOT="$HOME/.rbenv"
@@ -89,7 +89,7 @@ Painless Ruby Installation (Autoinstaller Ruby)
   #-----------------------------------------------------------------------------
   RUN sudo /bin/sh /opt/ruby_installer/gems.sh
   ```
-* Sample project of Docker Ruby, visit [zeroc0d3/docker-lab](https://github.com/zeroc0d3/docker-lab) repository
+* Sample project for Docker Ruby, visit [zeroc0d3/docker-lab](https://github.com/zeroc0d3/docker-lab) repository
     
   
 ## Running Installation
