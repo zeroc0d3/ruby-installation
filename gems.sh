@@ -39,7 +39,8 @@ load_env() {
   echo "\033[22;34m[ $DATE ] ##### Load Environment: \033[0m" 
 
   ### Running Ruby Environment ###
-  /bin/sh ./ruby.sh
+  PWD=`pwd` 
+  cd $PWD; /bin/sh ./ruby.sh
     
   if [ "$INSTALL_PACKAGE" = "rbenv" ]
   then

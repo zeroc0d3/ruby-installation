@@ -1,5 +1,13 @@
+version 1.5
+====================
+- Remove "docker" folder in this repository. You can clone / forked with other repository:
+  1) Docker-Lab (https://github.com/zeroc0d3/docker-lab)
+  2) CentOS-Ruby (https://github.com/zeroc0d3lab/centos-ruby) 
+- Fixing path for loading environment 
+
 version 1.4
 ====================
+- New version of gems.sh file to install ruby dependency packages (bundle install) 
 
 version 1.3
 ====================
