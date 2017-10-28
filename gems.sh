@@ -1,7 +1,6 @@
 #!/bin/sh
 
 VER="1.1"                          # script version
-DATE=`date '+%Y-%m-%d %H:%M:%S'`
 
 get_time() {
   DATE=`date '+%Y-%m-%d %H:%M:%S'`
@@ -17,7 +16,7 @@ logo() {
   echo "\033[22;31m  /_______ \___  >__|   \____/ \______  /\_____  /\____ | /______  /      \033[0m"
   echo "\033[22;31m          \/   \/                     \/       \/      \/        \/       \033[0m\n"
   echo "\033[22;32m--------------------------------------------------------------------------\033[0m"
-  echo "\033[22;32m# GEMS INSTALLATION SCRIPT :: ver-$VER                                    \033[0m"
+  echo "\033[22;32m# BUNDLE INSTALLATION SCRIPT :: ver-$VER                                  \033[0m"
 }
 
 header() {
