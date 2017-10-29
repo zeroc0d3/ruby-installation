@@ -1,12 +1,13 @@
 #!/bin/sh
 
-VER="1.1"                          # script version
-DEFAULT_VERSION="2.4.2"            # default version installation 
-DEFAULT_PACKAGE="rbenv"            # default package installation
+TITLE="RUBY INSTALLATION SCRIPT"     # script name
+VER="1.1"                            # script version
+DEFAULT_VERSION="2.4.2"              # default version installation 
+DEFAULT_PACKAGE="rbenv"              # default package installation
 INSTALL_VERSION=$DEFAULT_VERSION
 INSTALL_PACKAGE=$DEFAULT_PACKAGE
-USERNAME=`echo $USER`              # default username
-PATH_HOME=`echo $HOME`             # default home path 
+USERNAME=`echo $USER`                # default username
+PATH_HOME=`echo $HOME`               # default home path 
 
 ### Path Installation Ruby Package Manager ###
 RBENV_ROOT="$PATH_HOME/.rbenv"
@@ -32,7 +33,7 @@ logo() {
   echo "\033[22;31m  /_______ \___  >__|   \____/ \______  /\_____  /\____ | /______  /      \033[0m"
   echo "\033[22;31m          \/   \/                     \/       \/      \/        \/       \033[0m"
   echo "\033[22;32m--------------------------------------------------------------------------\033[0m"
-  echo "\033[22;32m# RUBY INSTALLATION SCRIPT :: ver-$VER                                    \033[0m"
+  echo "\033[22;32m# $TITLE :: ver-$VER                                                      \033[0m"
 }
 
 header() {
