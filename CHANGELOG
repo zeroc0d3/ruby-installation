@@ -1,6 +1,7 @@
 version 1.5.1
 ====================
 - Fixing path for loading environment in ruby installation (install_ruby.sh)
+- Fixing path for loading environment & reload shell in gems installation (gems.sh) 
 
 version 1.5
 ====================

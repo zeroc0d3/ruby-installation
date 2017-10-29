@@ -1,6 +1,13 @@
 #!/bin/sh
 
-VER="1.1"                          # script version
+VER="1.1"                # script version
+USERNAME=`echo $USER`    # default username
+PATH_HOME=`echo $HOME`   # default home path 
+
+### Path Installation Ruby Package Manager ###
+RBENV_ROOT="$PATH_HOME/.rbenv"
+RVM_ROOT="/usr/local/rvm"
+WHAT_SHELL=`$SHELL -c 'echo $0'`
 
 get_time() {
   DATE=`date '+%Y-%m-%d %H:%M:%S'`
@@ -42,7 +49,7 @@ load_env() {
   PWD=`pwd` 
   cd $PWD; /bin/sh ./ruby.sh
     
-  if [ "$INSTALL_PACKAGE" = "rbenv" ]
+  if [ -d "$RBENV_ROOT" ] 
   then
     if [ "$WHAT_SHELL" = "`which zsh`" ] || [ "$WHAT_SHELL" = "zsh" ]
     then  
@@ -88,7 +95,7 @@ install_bundle() {
 }
 
 reload_shell() {
-  if [ "$INSTALL_PACKAGE" = "rbenv" ]
+  if [ -d "$RBENV_ROOT" ] 
   then
     exec $SHELL
   else
