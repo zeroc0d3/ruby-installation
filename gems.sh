@@ -91,7 +91,7 @@ install_bundle() {
   $GEM install bundle
   echo ""
   get_time
-  echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Bundle Installed... \033[0m"
+  echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Bundle Installed... \033[0m\n"
 }
 
 reload_shell() {
