@@ -1,9 +1,13 @@
+version 1.5.1
+====================
+- Fixing path for loading environment in ruby installation (install_ruby.sh)
+
 version 1.5
 ====================
 - Remove "docker" folder in this repository. You can clone / forked with other repository:
   1) Docker-Lab (https://github.com/zeroc0d3/docker-lab)
   2) CentOS-Ruby (https://github.com/zeroc0d3lab/centos-ruby) 
-- Fixing path for loading environment 
+- Fixing path for loading environment in gems installation (gems.sh) 
 
 version 1.4
 ====================
