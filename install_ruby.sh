@@ -1,7 +1,7 @@
 #!/bin/sh
 
 TITLE="RUBY INSTALLATION SCRIPT"     # script name
-VER="1.1"                            # script version
+VER="1.5.3"                        # script version
 DEFAULT_VERSION="2.4.2"              # default version installation 
 DEFAULT_PACKAGE="rbenv"              # default package installation
 INSTALL_VERSION=$DEFAULT_VERSION
@@ -17,7 +17,7 @@ RVM_ROOT="/usr/local/rvm"
 SNAP_BACKUP=`date '+%Y%m%d%H%M'`
 PATH_BACKUP_RBENV=$PATH_HOME"/__rbenv_"$SNAP_BACKUP
 PATH_BACKUP_RVM=$PATH_HOME"/__rvm_"$SNAP_BACKUP
-WHAT_SHELL=`$SHELL -c 'echo $0'`
+VAR_SHELL=`$SHELL -c 'echo $0'`
   
 get_time() {
   DATE=`date '+%Y-%m-%d %H:%M:%S'`
@@ -40,26 +40,28 @@ header() {
   logo
   echo "\033[22;32m==========================================================================\033[0m"
   get_time
-  echo "\033[22;31m# BEGIN PROCESS..... (Please Wait)  \033[0m"
-  echo "\033[22;31m# Start at: $DATE  \033[0m\n"
+  echo "\033[22;37m# BEGIN PROCESS..... (Please Wait)  \033[0m"
+  echo "\033[22;33m# Start at: $DATE  \033[0m\n"
 }
 
 footer() {
   echo "\033[22;32m==========================================================================\033[0m"
   get_time
-  echo "\033[22;31m# Finish at: $DATE  \033[0m"
-  echo "\033[22;31m# END PROCESS.....  \033[0m\n" 
+  echo "\033[22;33m# Finish at: $DATE  \033[0m"
+  echo "\033[22;37m# END PROCESS.....  \033[0m\n" 
 }
 
 check_version() {
+  ## RUBY_VERSION from Docker Environment
   if [ "${RUBY_VERSION}" != "" ]
   then
-    INSTALL_VERSION=${RUBY_VERSION}   
+    INSTALL_VERSION=${RUBY_VERSION} 
   fi
 }
 
 check_ruby_package() {
-  if [ "${RUBY_VERSION}" != "" ]
+  ## RUBY_PACKAGE from Docker Environment
+  if [ "${RUBY_PACKAGE}" != "" ]
   then
     INSTALL_PACKAGE=${RUBY_PACKAGE}   
   fi
@@ -95,11 +97,11 @@ load_env() {
     
   if [ "$INSTALL_PACKAGE" = "rbenv" ]
   then
-    if [ "$WHAT_SHELL" = "`which zsh`" ] || [ "$WHAT_SHELL" = "zsh" ]
+    if [ "$VAR_SHELL" = "`which zsh`" ] || [ "$VAR_SHELL" = "zsh" ]
     then  
       echo "\033[22;32m[ $DATE ]       $PATH_HOME/.zshrc \033[0m\n"
     else
-      if [ "$WHAT_SHELL" = "`which bash`" ] || [ "$WHAT_SHELL" = "bash" ]
+      if [ "$VAR_SHELL" = "`which bash`" ] || [ "$VAR_SHELL" = "bash" ]
       then
         echo "\033[22;32m[ $DATE ]       $PATH_HOME/.bashrc \033[0m\n"
       else 

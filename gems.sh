@@ -1,7 +1,7 @@
 #!/bin/sh
 
 TITLE="BUNDLE INSTALLATION SCRIPT"   # script name
-VER="1.1"                            # script version
+VER="1.5.3"                          # script version
 USERNAME=`echo $USER`                # default username
 PATH_HOME=`echo $HOME`               # default home path 
 
@@ -31,15 +31,15 @@ header() {
   logo
   echo "\033[22;32m==========================================================================\033[0m"
   get_time
-  echo "\033[22;31m# BEGIN PROCESS..... (Please Wait)  \033[0m"
-  echo "\033[22;31m# Start at: $DATE  \033[0m\n"
+  echo "\033[22;37m# BEGIN PROCESS..... (Please Wait)  \033[0m"
+  echo "\033[22;33m# Start at: $DATE  \033[0m\n"
 }
 
 footer() {
   echo "\033[22;32m==========================================================================\033[0m"
   get_time
-  echo "\033[22;31m# Finish at: $DATE  \033[0m"
-  echo "\033[22;31m# END PROCESS.....  \033[0m\n" 
+  echo "\033[22;33m# Finish at: $DATE  \033[0m"
+  echo "\033[22;37m# END PROCESS.....  \033[0m\n" 
 }
 
 load_env() {

@@ -1,46 +1,53 @@
-version 1.5.2
+## version 1.5.3
 ====================
-- Add title script 
+* Change message color 
+* Change identity select shell to "VAR_SHELL"
+* Fixing check version (${RUBY_VERSION} from Docker environment)
+* Fixing check ruby package (${RUBY_PACKAGE} from Docker environment)
 
-version 1.5.1
+## version 1.5.2
 ====================
-- Fixing path for loading environment in ruby installation (install_ruby.sh)
-- Fixing path for loading environment & reload shell in gems installation (gems.sh) 
+* Add title script 
 
-version 1.5
+## version 1.5.1
 ====================
-- Remove "docker" folder in this repository. You can clone / forked with other repository:
-  1) Docker-Lab (https://github.com/zeroc0d3/docker-lab)
-  2) CentOS-Ruby (https://github.com/zeroc0d3lab/centos-ruby) 
-- Fixing path for loading environment in gems installation (gems.sh) 
+* Fixing path for loading environment in ruby installation (install_ruby.sh)
+* Fixing path for loading environment & reload shell in gems installation (gems.sh) 
 
-version 1.4
+## version 1.5
 ====================
-- New version of gems.sh file to install ruby dependency packages (bundle install) 
+* Remove "docker" folder in this repository. You can clone / forked with other repository:
+  1. Docker-Lab (https://github.com/zeroc0d3/docker-lab)
+  2. CentOS-Ruby (https://github.com/zeroc0d3lab/centos-ruby) 
+* Fixing path for loading environment in gems installation (gems.sh) 
 
-version 1.3
+## version 1.4
 ====================
-- Update message running installation
-- Using ruby.sh for temporary load environment configuration
-- Fixing reload shell after success installation
+* New version of gems.sh file to install ruby dependency packages (bundle install) 
 
-version 1.2
+## version 1.3
 ====================
-- Fixing environment bash / zsh reload shell
-- Dynamic USERNAME & PATH_HOME
+* Update message running installation
+* Using ruby.sh for temporary load environment configuration
+* Fixing reload shell after success installation
 
-version 1.1
+## version 1.2
 ====================
-Fixing Environment & Reload Shell
+* Fixing environment bash / zsh reload shell
+* Dynamic USERNAME & PATH_HOME
 
-version 1.0
+## version 1.1
 ====================
-Add reload shell for bash & zsh
+* Fixing Environment & Reload Shell
 
-version 0.9.1
+## version 1.0
 ====================
-Installer with rbenv as default package manager
+* Add reload shell for bash & zsh
 
-version 0.9
+## version 0.9.1
 ====================
-Installer with rvm as default package manager
+* Installer with rbenv as default package manager
+
+## version 0.9
+====================
+* Installer with rvm as default package manager
