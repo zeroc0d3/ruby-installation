@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 TITLE="BUNDLE INSTALLATION SCRIPT"   # script name
 VER="1.5.3"                          # script version

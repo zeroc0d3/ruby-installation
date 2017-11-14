@@ -1,3 +1,7 @@
+## version 1.5.4
+====================
+* Change environment script from `#!/bin/sh` to `#!/usr/bin/env sh`
+
 ## version 1.5.3
 ====================
 * Change message color 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 ### Path Ruby RBENV / RVM ###
 export RBENV_ROOT="$HOME/.rbenv"
