@@ -1,106 +1,75 @@
 # ruby-installation
 Painless Ruby Installation (Autoinstaller Ruby)
 
-![alt text](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby1.png)
-![alt text](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby2.png)
+![Progress-1](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby1.png)
+![Progress-2](https://github.com/zeroc0d3/ruby-installation/blob/master/snapshot/install_ruby2.png)
+
+## Dashboard
+$VERSION = The Latest Version Stable
+```
+==========================================================================
+  __________                  _________ _______       .___________
+  \____    /___________  ____ \_   ___ \   _  \    __| _/\_____  \  LAB
+    /     // __ \_  __ \/  _ \/    \  \//  /_\  \  / __ |   _(__  <
+   /     /\  ___/|  | \(  <_> )     \___\  \_/   \/ /_/ |  /       \
+  /_______ \___  >__|   \____/ \______  /\_____  /\____ | /______  /
+          \/   \/                     \/       \/      \/        \/
+--------------------------------------------------------------------------
+# RUBY INSTALLATION SCRIPT :: ver-$VERSION
+==========================================================================
+# BEGIN PROCESS..... (Please Wait)
+# Start at: 2017-11-19 06:56:36
+
+[ 2017-11-19 06:56:36 ] ##### Install Ruby Version:
+[ 2017-11-19 06:56:36 ]       2.4.2
+
+[ 2017-11-19 06:56:36 ] ##### Using Ruby Package:
+[ 2017-11-19 06:56:36 ]       rbenv
+
+[ 2017-11-19 06:56:36 ] ##### Archiving Old Ruby Packages:
+
+[ 2017-11-19 06:56:36 ] :: [ ✔ ]  Old Ruby Packages Archived...
+
+[ 2017-11-19 06:56:36 ] ##### Download RBENV Repository:
+
+[ 2017-11-19 06:56:36 ] :: [ ✔ ]  Ruby Installed...
+
+[ 2017-11-19 06:56:36 ] ##### Load Environment:
+[ 2017-11-19 06:56:36 ]       /home/zeroc0d3/.zshrc
+
+[ 2017-11-19 06:56:36 ] :: [ ✔ ]  Environment Loaded...
+
+[ 2017-11-19 06:56:36 ] ##### Ruby Version:
+[ 2017-11-19 06:56:36 ]       ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]
+
+[ 2017-11-19 06:56:36 ] ##### Path Ruby:
+[ 2017-11-19 06:56:36 ]       /home/zeroc0d3/.rbenv/shims/ruby
+
+[ 2017-11-19 06:56:36 ] ##### Path Gem:
+[ 2017-11-19 06:56:36 ]       /home/zeroc0d3/.rbenv/shims/gem
+
+[ 2017-11-19 06:56:36 ] ##### Install Bundle:
+[ 2017-11-19 06:56:36 ]       /home/zeroc0d3/.rbenv/shims/gem install bundle
+
+[ 2017-11-19 06:56:36 ] :: [ ✔ ]  Bundle Installed...
+```
 
 ## Features
 - [X] Using `rbenv` Package Manager
 - [X] Using `rvm` Package Manager
 - [X] Support Docker Installation
 
-## Configuration
-* Ruby Version
-  ```
-  DEFAULT_VERSION='2.4.2'
-  ```
-* Install with `rbenv` Package Manager
-  ```
-  DEFAULT_PACKAGE='rbenv'
-  ```
-* Install with `rvm` Package Manager
-  ```
-  DEFAULT_PACKAGE='rvm'
-  ```
-* Your Username & Path (Home)
-  ```
-  USERNAME='zeroc0d3'         (default: USERNAME=`echo $USER`)
-  PATH_HOME='/home/zeroc0d3'  (default: PATH_HOME=`echo $HOME`)
-  ```    
-* Add this configuration for Bash (`~/.bashrc`) and/or ZSH (`~/.zshrc`) 
-  ```
-  ### Path Ruby RBENV / RVM ###
-  export RBENV_ROOT="$HOME/.rbenv"
-  export RVM_ROOT="/usr/local/rvm"
+## Documentation
+* Configuration & How-To, see
+[**Wiki Documentation**](https://github.com/zeroc0d3/ruby-installation/wiki)
 
-  ### rbenv (Ruby) default ###
-  if [ -d "$RBENV_ROOT" ] 
-  then
-    export PATH="$RBENV_ROOT/bin:${PATH}"
-    eval "$(rbenv init -)"
-    export PATH="$RBENV_ROOT/plugins/ruby-build/bin:$PATH"
-    # export RAILS_ENV=staging
-  else
-    ### rvm (Ruby) - alternative ###
-    if [ -d "$RVM_ROOT" ] 
-    then
-      export PATH="$PATH:$RVM_ROOT/bin"
-      source $RVM_ROOT/scripts/rvm
-
-      # set PATH alternatives using this:
-      [[ -s "$RVM_ROOT/scripts/rvm"  ]] && source "$RVM_ROOT/scripts/rvm"
-    fi 
-  fi
-  ```
-
-## Docker Installation
-* From Image
-  ```
-  FROM zeroc0d3lab/centos-base-workspace-lite:latest
-  ```
-* Environment
-  ```
-  ENV RUBY_VERSION=2.4.2
-  ENV RUBY_PACKAGE="rbenv"
-  # ("rbenv" = using rbenv package manager, "rvm" = using rvm package manager)
-  ```
-* Create `rootfs/root` folder
-* Copy all sources in this repo to `rootfs/root` folder
-* Configure as root 
-  ```
-  USERNAME='root'
-  PATH_HOME='/root'
-  ```    
-* Install Ruby in Dockerfile
-  ```
-  #-----------------------------------------------------------------------------
-  # Prepare Install Ruby
-  # -) copy .zshrc to /root
-  # -) copy .bashrc to /root
-  #-----------------------------------------------------------------------------
-  RUN git clone https://github.com/zeroc0d3/ruby-installation /opt/ruby_installer 
-
-  COPY ./rootfs/root/.zshrc /root/.zshrc
-  COPY ./rootfs/root/.bashrc /root/.bashrc
-  RUN sudo /bin/sh /opt/ruby_installer/install_ruby.sh
-
-  #-----------------------------------------------------------------------------
-  # Install Ruby Packages (rbenv/rvm)
-  #-----------------------------------------------------------------------------
-  RUN sudo /bin/sh /opt/ruby_installer/gems.sh
-  ```
-* Sample project for Docker Ruby, visit [zeroc0d3/docker-lab](https://github.com/zeroc0d3/docker-lab) repository
-    
-  
-## Running Installation
-* [X] Configure Ruby Version
-* [X] Configure Package Manager
-* [X] Configure Username & Path
-* [X] Configure Bash (`~/.bashrc`) and/or ZSH (`~/.zshrc`)
-* Type command:
-  ```
-  ./install_ruby.sh
-  ```
+## Roadmap
+* - [X] Check target Ruby version installation
+* - [X] Check target Ruby package manager (rbenv / rvm)
+* - [X] Check old Ruby Installation, if exist then backup / archive it
+* - [X] Running Installation with all configuration (version & package manager) 
+* - [X] Load Environment after successfully installation
+* - [X] Validate Installation
 
 ## License
 [**MIT License**](https://github.com/zeroc0d3/ruby-installation/blob/master/LICENSE)

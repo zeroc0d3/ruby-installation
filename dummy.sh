@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 TITLE="RUBY INSTALLATION SCRIPT"     # script name
-VER="1.5.4"                          # script version
+VER="1.5.4-dummy"                    # script version
 DEFAULT_VERSION="2.4.2"              # default version installation 
 DEFAULT_PACKAGE="rbenv"              # default package installation
 INSTALL_VERSION=$DEFAULT_VERSION
@@ -71,17 +71,17 @@ cleanup() {
   get_time
   echo "\033[22;34m[ $DATE ] ##### Archiving Old Ruby Packages: \033[0m" 
 
-  if [ "$INSTALL_PACKAGE" = "rbenv" ]
-  then
-    if [ -d "$RBENV_ROOT" ]; then 
-      mv $RBENV_ROOT $PATH_BACKUP_RBENV 
-    fi 
-  else 
-    if [ -d "$RVM_ROOT" ]; then 
-      sudo mv $RVM_ROOT $PATH_BACKUP_RVM 
-    fi     
-  fi
-  sudo rm -f /etc/profile.d/rvm.sh
+  # if [ "$INSTALL_PACKAGE" = "rbenv" ]
+  # then
+  #   if [ -d "$RBENV_ROOT" ]; then 
+  #     mv $RBENV_ROOT $PATH_BACKUP_RBENV 
+  #   fi 
+  # else 
+  #   if [ -d "$RVM_ROOT" ]; then 
+  #     sudo mv $RVM_ROOT $PATH_BACKUP_RVM 
+  #   fi     
+  # fi
+  # sudo rm -f /etc/profile.d/rvm.sh
   echo ""
   get_time
   echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Old Ruby Packages Archived... \033[0m\n"
@@ -140,15 +140,15 @@ install_ruby() {
     get_time
     echo "\033[22;34m[ $DATE ] ##### Download RBENV Repository: \033[0m" 
 
-    git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT \
-      && git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build 
+    # git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT \
+    #   && git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build 
     
-    #-----------------------------------------------------------------------------
-    # Install Ruby with rbenv (default)
-    #-----------------------------------------------------------------------------
-    $RBENV_ROOT/bin/rbenv install $INSTALL_VERSION \
-      && $RBENV_ROOT/bin/rbenv global $INSTALL_VERSION \
-      && $RBENV_ROOT/bin/rbenv rehash 
+    # #-----------------------------------------------------------------------------
+    # # Install Ruby with rbenv (default)
+    # #-----------------------------------------------------------------------------
+    # $RBENV_ROOT/bin/rbenv install $INSTALL_VERSION \
+    #   && $RBENV_ROOT/bin/rbenv global $INSTALL_VERSION \
+    #   && $RBENV_ROOT/bin/rbenv rehash 
     
     echo ""
     get_time
@@ -160,19 +160,19 @@ install_ruby() {
     get_time
     echo "\033[22;34m[ $DATE ] ##### Download RVM Repository: \033[0m" 
   
-    curl -sSL https://rvm.io/mpapis.asc | gpg2 --import \
-      && curl -sSL https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | sudo bash -s stable \
-      && sudo usermod -a -G rvm root \
-      && sudo usermod -a -G rvm $USERNAME \
-      && sudo cp ruby.sh /etc/profile.d/rvm.sh \
-      && umask g+w \
-      && sudo $RVM_ROOT/bin/rvm get head --auto-dotfiles 
+    # curl -sSL https://rvm.io/mpapis.asc | gpg2 --import \
+    #   && curl -sSL https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | sudo bash -s stable \
+    #   && sudo usermod -a -G rvm root \
+    #   && sudo usermod -a -G rvm $USERNAME \
+    #   && sudo cp ruby.sh /etc/profile.d/rvm.sh \
+    #   && umask g+w \
+    #   && sudo $RVM_ROOT/bin/rvm get head --auto-dotfiles 
 
-    #-----------------------------------------------------------------------------
-    # Install Ruby with rvm (alternatives)
-    #-----------------------------------------------------------------------------
-    $RVM_ROOT/bin/rvm install $INSTALL_VERSION \
-      && $RVM_ROOT/bin/rvm use $INSTALL_VERSION --default 
+    # #-----------------------------------------------------------------------------
+    # # Install Ruby with rvm (alternatives)
+    # #-----------------------------------------------------------------------------
+    # $RVM_ROOT/bin/rvm install $INSTALL_VERSION \
+    #   && $RVM_ROOT/bin/rvm use $INSTALL_VERSION --default 
   
     echo ""
     get_time
@@ -199,7 +199,7 @@ install_bundle() {
   get_time
   echo "\033[22;34m[ $DATE ] ##### Install Bundle: \033[0m" 
   echo "\033[22;32m[ $DATE ]       $GEM install bundle   \033[0m\n"
-  $GEM install bundle
+  # $GEM install bundle
   echo ""
   get_time
   echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Bundle Installed... \033[0m"
