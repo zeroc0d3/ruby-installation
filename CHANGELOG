@@ -1,3 +1,9 @@
+## version 1.6.0
+====================
+* Fixing rvm installation path
+* Set global archive for rvm & rbenv
+* Change initialize default package ruby (rbenv / rvm) with "0" (rbenv) and "1" (rvm)
+
 ## version 1.5.4
 ====================
 * Change environment script from `#!/bin/sh` to `#!/usr/bin/env sh`
