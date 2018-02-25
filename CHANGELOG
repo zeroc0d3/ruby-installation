@@ -1,6 +1,7 @@
 ## version 1.7.0
 ====================
 * Fixing initialize packages
+* Fixing default packages Installer (rbenv)
 
 ## version 1.6.0
 ====================

@@ -4,6 +4,7 @@ TITLE="RUBY INSTALLATION SCRIPT"     # script name
 VER="1.7.0"                          # script version
 DEFAULT_VERSION="2.4.2"              # default version installation
 DEFAULT_PACKAGE="0"                  # default package installation (0 = rbenv, 1 = rvm)
+DEFAULT_PACKAGE_NAME="rbenv"
 INSTALL_VERSION=$DEFAULT_VERSION
 INSTALL_PACKAGE=$DEFAULT_PACKAGE
 USERNAME=`echo $USER`                # default username
@@ -64,6 +65,12 @@ check_ruby_package() {
   if [ "${RUBY_PACKAGE}" != "" ]
   then
     INSTALL_PACKAGE=${RUBY_PACKAGE}
+    if [ "$INSTALL_PACKAGE" = "0" ]
+    then
+      DEFAULT_PACKAGE_NAME="rbenv"
+    else
+      DEFAULT_PACKAGE_NAME="rvm"
+    fi
   fi
 }
 
@@ -128,7 +135,7 @@ install_ruby() {
   echo "\033[22;32m[ $DATE ]       $INSTALL_VERSION \033[0m\n"
   get_time
   echo "\033[22;34m[ $DATE ] ##### Using Ruby Package: \033[0m"
-  echo "\033[22;32m[ $DATE ]       $INSTALL_PACKAGE \033[0m\n"
+  echo "\033[22;32m[ $DATE ]       $DEFAULT_PACKAGE_NAME \033[0m\n"
   cleanup
   if [ "$INSTALL_PACKAGE" = "0" ]
   then
