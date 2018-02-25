@@ -1,3 +1,7 @@
+## version 1.7.0
+====================
+* Fixing initialize packages
+
 ## version 1.6.0
 ====================
 * Fixing rvm installation path
@@ -10,30 +14,30 @@
 
 ## version 1.5.3
 ====================
-* Change message color 
+* Change message color
 * Change identity select shell to "VAR_SHELL"
 * Fixing check version (${RUBY_VERSION} from Docker environment)
 * Fixing check ruby package (${RUBY_PACKAGE} from Docker environment)
 
 ## version 1.5.2
 ====================
-* Add title script 
+* Add title script
 
 ## version 1.5.1
 ====================
 * Fixing path for loading environment in ruby installation (install_ruby.sh)
-* Fixing path for loading environment & reload shell in gems installation (gems.sh) 
+* Fixing path for loading environment & reload shell in gems installation (gems.sh)
 
 ## version 1.5
 ====================
 * Remove "docker" folder in this repository. You can clone / forked with other repository:
   1. Docker-Lab (https://github.com/zeroc0d3/docker-lab)
-  2. CentOS-Ruby (https://github.com/zeroc0d3lab/centos-ruby) 
-* Fixing path for loading environment in gems installation (gems.sh) 
+  2. CentOS-Ruby (https://github.com/zeroc0d3lab/centos-ruby)
+* Fixing path for loading environment in gems installation (gems.sh)
 
 ## version 1.4
 ====================
-* New version of gems.sh file to install ruby dependency packages (bundle install) 
+* New version of gems.sh file to install ruby dependency packages (bundle install)
 
 ## version 1.3
 ====================

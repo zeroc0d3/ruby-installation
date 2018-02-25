@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 TITLE="RUBY INSTALLATION SCRIPT"     # script name
-VER="1.6.0"                          # script version
+VER="1.7.0"                          # script version
 DEFAULT_VERSION="2.4.2"              # default version installation
 DEFAULT_PACKAGE="0"                  # default package installation (0 = rbenv, 1 = rvm)
 INSTALL_VERSION=$DEFAULT_VERSION
@@ -76,10 +76,10 @@ cleanup() {
 
   if [ -d "$RVM_ROOT" ]; then
     sudo mv $RVM_ROOT $PATH_BACKUP_RVM
+    sudo mkdir -p /user/local/rvm
+    sudo chown $USER:$USER -R /usr/local/rvm
+    sudo rm -f /etc/profile.d/rvm.sh
   fi
-  sudo mkdir -p /user/local/rvm
-  sudo chown $USER:$USER -R /usr/local/rvm
-  sudo rm -f /etc/profile.d/rvm.sh
   echo ""
   get_time
   echo "\033[22;32m[ $DATE ] :: [ ✔ ] \033[22;32m Old Ruby Packages Archived... \033[0m\n"
@@ -87,7 +87,7 @@ cleanup() {
 
 load_env() {
   get_time
-  echo "\033[22;34m[ $DATE ] ##### Load Environment: \033[0m" 
+  echo "\033[22;34m[ $DATE ] ##### Load Environment: \033[0m"
 
   ### Running Ruby Environment ###
   PWD=`pwd`
@@ -114,7 +114,7 @@ load_env() {
 }
 
 reload_shell() {
-  if [ "$INSTALL_PACKAGE" = "rbenv" ]
+  if [ "$INSTALL_PACKAGE" = "0" ]
   then
     exec $SHELL
   else
@@ -130,7 +130,7 @@ install_ruby() {
   echo "\033[22;34m[ $DATE ] ##### Using Ruby Package: \033[0m"
   echo "\033[22;32m[ $DATE ]       $INSTALL_PACKAGE \033[0m\n"
   cleanup
-  if [ "$INSTALL_PACKAGE" = "rbenv" ]
+  if [ "$INSTALL_PACKAGE" = "0" ]
   then
     #-----------------------------------------------------------------------------
     # Get repo rbenv
