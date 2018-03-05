@@ -2,7 +2,7 @@
 
 TITLE="RUBY INSTALLATION SCRIPT"     # script name
 VER="1.7.0"                          # script version
-DEFAULT_VERSION="2.4.2"              # default version installation
+DEFAULT_VERSION="2.4.1"              # default version installation
 DEFAULT_PACKAGE="0"                  # default package installation (0 = rbenv, 1 = rvm)
 DEFAULT_PACKAGE_NAME="rbenv"
 INSTALL_VERSION=$DEFAULT_VERSION
@@ -56,8 +56,9 @@ check_version() {
   ## RUBY_VERSION from Docker Environment
   if [ "${RUBY_VERSION}" != "" ]
   then
-    INSTALL_VERSION=${RUBY_VERSION}
+    DEFAULT_VERSION=${RUBY_VERSION}
   fi
+  INSTALL_VERSION=$DEFAULT_VERSION
 }
 
 check_ruby_package() {
@@ -77,15 +78,18 @@ check_ruby_package() {
 cleanup() {
   get_time
   echo "\033[22;34m[ $DATE ] ##### Archiving Old Ruby Packages: \033[0m"
-  if [ -d "$RBENV_ROOT" ]; then
-    mv $RBENV_ROOT $PATH_BACKUP_RBENV
-  fi
-
-  if [ -d "$RVM_ROOT" ]; then
-    sudo mv $RVM_ROOT $PATH_BACKUP_RVM
-    sudo mkdir -p /user/local/rvm
-    sudo chown $USER:$USER -R /usr/local/rvm
-    sudo rm -f /etc/profile.d/rvm.sh
+  if [ "$DEFAULT_PACKAGE" = "0" ]
+  then
+    if [ -d "$RBENV_ROOT" ]; then
+      mv $RBENV_ROOT $PATH_BACKUP_RBENV
+    fi
+  else
+    if [ -d "$RVM_ROOT" ]; then
+      sudo mv $RVM_ROOT $PATH_BACKUP_RVM
+      sudo mkdir -p /user/local/rvm
+      sudo chown $USER:$USER -R /usr/local/rvm
+      sudo rm -f /etc/profile.d/rvm.sh
+    fi
   fi
   echo ""
   get_time
