@@ -170,6 +170,7 @@ install_ruby() {
     echo "\033[22;34m[ $DATE ] ##### Download RVM Repository: \033[0m"
 
     curl -sSL https://rvm.io/mpapis.asc | gpg2 --import \
+      && curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import - \
       && curl -sSL https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | sudo bash -s stable \
       && sudo usermod -a -G rvm root \
       && sudo usermod -a -G rvm $USERNAME \
