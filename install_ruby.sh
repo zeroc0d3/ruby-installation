@@ -2,7 +2,7 @@
 
 TITLE="RUBY INSTALLATION SCRIPT"     # script name
 VER="1.7.0"                          # script version
-DEFAULT_VERSION="2.4.1"              # default version installation
+DEFAULT_VERSION="2.4.5"              # default version installation (2.4.5, 2.5.3, 2.6.1)
 DEFAULT_PACKAGE="0"                  # default package installation (0 = rbenv, 1 = rvm)
 DEFAULT_PACKAGE_NAME="rbenv"
 INSTALL_VERSION=$DEFAULT_VERSION
@@ -50,6 +50,22 @@ footer() {
   get_time
   echo "\033[22;33m# Finish at: $DATE  \033[0m"
   echo "\033[22;37m# END PROCESS.....  \033[0m\n"
+}
+
+update_apt() {
+  apt-get update
+  apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install \
+    build-essential \
+    tar \
+    bzip2 \
+    curl \
+    wget \
+    libssl-dev \
+    libreadline-dev \
+    zlib1g-dev \
+    gnupg \
+    gnupg2 \
+    git
 }
 
 check_version() {
@@ -217,6 +233,7 @@ install_bundle() {
 
 main() {
   header
+  update_apt
   check_version
   check_ruby_package
   install_ruby
